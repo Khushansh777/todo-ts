@@ -199,26 +199,154 @@ h1 {
   }
 
   .todo-item {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 15px;
-    text-align: center;
     padding: 12px;
     border-radius: 12px;
   }
 
   .todo-checkbox {
-    margin-right: 0;
+    margin-right: 10px;
+  }
+
+  .todo-text {
+    flex: 1;
+    text-align: left;
+    min-width: 0;
   }
 
   .todo-actions {
-    flex-direction: column;
-    width: 100%;
-    margin-left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   .edit-button,
   .delete-button {
-    width: 100%;
+    width: auto;
+    padding: 10px 15px;
+    font-size: 0.9rem;
     justify-content: center;
+  }
+}
+
+/* Small Mobile Devices (320px - 468px) */
+@media (max-width: 468px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    gap: 8px;
+  }
+
+  .todo-input {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .add-button {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .todo-item {
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .todo-checkbox {
+    margin-right: 8px;
+  }
+
+  .todo-text {
+    font-size: 0.95rem;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .todo-actions {
+    gap: 6px;
+    margin-left: auto;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+    min-height: 40px;
+  }
+
+  /* Make buttons more touch-friendly */
+  .edit-button,
+  .delete-button,
+  .add-button {
+    min-height: 44px;
+  }
+
+  /* Adjust SVG icons in buttons */
+  .edit-button svg,
+  .delete-button svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Extra Small Mobile Devices (320px - 375px) */
+@media (max-width: 375px) {
+  .container {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .todo-input {
+    padding: 10px;
+  }
+
+  .todo-item {
+    padding: 8px;
+    justify-content: space-around;
+  }
+
+  .todo-text {
+    font-size: 0.9rem;
+  }
+
+  .todo-actions {
+    margin-top: 8px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-height: 38px;
   }
 }

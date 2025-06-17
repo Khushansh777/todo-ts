@@ -26,15 +26,25 @@ function getToDO(key) {
 }
 //get value from the form  
 function getValueofInput() {
-    value = submitForm.value;
-    array.push({
-        id: new Date(),
-        completed: false,
-        name: value
-    });
-    console.log(array);
-    storeTodo();
-    console.log(value, 'value from getValueofInput');
+    if (submitForm.value === '') {
+        alert('Empty Todo, Please Fill in some value');
+    }
+    if (submitForm.value !== '') {
+        try {
+            value = submitForm.value;
+            array.push({
+                id: new Date(),
+                completed: false,
+                name: value
+            });
+            console.log(array);
+            storeTodo();
+            console.log(value, 'value from getValueofInput');
+        }
+        catch (_a) {
+            throw new Error('Something is wrong with either value or global array');
+        }
+    }
     return value;
 }
 //create TODO

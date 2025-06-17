@@ -33,16 +33,29 @@ try{
 
 //get value from the form  
  function getValueofInput():string{
-   value = submitForm.value;
-   array.push({
-    id:new Date(),
-    completed:false,
-    name:value
-   })
-   console.log(array)
-   storeTodo()
+   if(submitForm.value === ''){
+    alert('Empty Todo, Please Fill in some value');
+   } 
+   if(submitForm.value !== ''){
+    try{
+    value = submitForm.value;
+    array.push({
+        id:new Date(),
+        completed:false,
+        name:value
+    })
+   console.log(array);
+   storeTodo() 
    console.log(value,'value from getValueofInput');
-   return value
+    }
+    catch{
+        throw new Error('Something is wrong with either value or global array')
+    }
+   
+ 
+  
+   }
+    return value
 }
 
 
