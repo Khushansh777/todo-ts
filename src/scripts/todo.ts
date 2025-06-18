@@ -1,6 +1,8 @@
 const submitbutton = document.querySelector('.add-button') as HTMLButtonElement;
-const submitForm = document.querySelector('#todoInput') as HTMLFormElement;
-const todoContainer = document.querySelector('#todoList') as HTMLUListElement
+const submitForm = document.querySelector('#todoInput') as HTMLInputElement;
+const todoContainer = document.querySelector('#todoList') as HTMLUListElement;
+
+
 let value:string;
 let array:Todo[] = [] 
 //to set up protocols ofr todo
@@ -11,8 +13,8 @@ interface Todo{
     name:string
 }
 //function to set local storage
-function storeTodo():void{
-    localStorage.setItem('todos',JSON.stringify(array));
+function storeTodo(elem:Todo[]):void{
+    localStorage.setItem('todos',JSON.stringify(elem));
 }
 // function to get ToDo
 function getToDO(key:string){
@@ -45,7 +47,7 @@ try{
         name:value
     })
    console.log(array);
-   storeTodo() 
+   storeTodo(array) 
    console.log(value,'value from getValueofInput');
     }
     catch{
@@ -88,7 +90,7 @@ function renderToDo():void{
                         </svg>
                         Edit
                     </button>
-                    <button class="delete-button">
+                    <button class="delete-button" data-delete-btn-id="${element.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 6h18"></path>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -106,6 +108,26 @@ renderToDo()
 function resetInput(){
         submitForm.value = '';
  }
+
+// Delete Btn functionality
+todoContainer.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement
+    const deleteBtn = target.closest('.delete-button') as HTMLButtonElement
+
+    if(deleteBtn){
+        console.log('deleteBTn',deleteBtn);
+        const datasetId = deleteBtn.dataset.deleteBtnIgotd;
+        // find the matched item and updates array
+        array = array.filter(element => element.id.toString() !== datasetId);
+        //store array
+        storeTodo(array)
+        //re-render TODO
+        renderToDo()
+    }
+    // const deleteBtnID:number = parseInt(deleteBtn.dataset.id);
+    // console.log(deleteBtnID)
+});
+
 // run function when btn click
 submitbutton.addEventListener('click', () =>{
      getValueofInput();
