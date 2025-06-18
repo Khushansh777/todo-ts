@@ -234,7 +234,9 @@ h1 {
     justify-content: center;
   }
 }
-
+ .displayNone{
+    display: none !important;
+ }
 /* Small Mobile Devices (320px - 468px) */
 @media (max-width: 468px) {
   body {
@@ -259,6 +261,8 @@ h1 {
     padding: 12px;
     font-size: 0.9rem;
   }
+
+
 
   .add-button {
     padding: 12px 20px;
